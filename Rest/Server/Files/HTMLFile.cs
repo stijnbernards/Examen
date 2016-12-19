@@ -24,6 +24,7 @@ namespace Rest.Server.Files
 
         public string GetData()
         {
+            MatchIf();
             MatchForeach();
             MatchVariables();
             return data;
@@ -100,6 +101,27 @@ namespace Rest.Server.Files
                     else
                     {
                         data = data.Replace(match.Value, "Variable: " + newMatch + " Not found!");
+                    }
+                }
+            }
+        }
+
+        private void MatchIf()
+        {
+            Regex ifRegex = new Regex(@"{{*\s*if*\s*\((.*?)\)*\s*}}(.*?){{*\s*endif*\s*}}", RegexOptions.Singleline);
+            MatchCollection matches = ifRegex.Matches(data);
+
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    if (variables.ContainsKey(match.Groups[1].Value))
+                    {
+                        data = data.Replace(match.Value, match.Groups[2].Value);
+                    }
+                    else
+                    {
+                        data = data.Replace(match.Value, "");
                     }
                 }
             }

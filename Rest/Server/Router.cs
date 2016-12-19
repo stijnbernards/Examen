@@ -109,6 +109,12 @@ namespace Rest.Server
             }
 
             NoAuth.ForEach(x => { if (!url.Contains(x)) guid = head.Session; else allow = true; });
+
+            if (ctx.Request.Cookies["guid"] != null)
+            {
+                guid = ctx.Request.Cookies["guid"].Value;
+            }
+
             if (guid == "user" || guid == "admin") allow = true;
 
             if (allow || Sessions.sessions.Any(i => i.Value.Item2 == guid && i.Value.Item1 == ctx.Request.RemoteEndPoint.Address.ToString()))
@@ -141,6 +147,13 @@ namespace Rest.Server
                         page.Headers = head;
                         page.Init(ctx);
                         response += page.Send();
+                        page.CleanUp();
+
+                        if (page.Location != null)
+                        {
+                            Console.WriteLine(page.Location);
+                            ctx.Response.Redirect(page.Location);
+                        }
                     }
                 }
                 catch (Exception e)

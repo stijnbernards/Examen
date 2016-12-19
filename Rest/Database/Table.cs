@@ -93,6 +93,12 @@ namespace Rest.Database
             foreach (PropertyInfo prop in dataset.GetProperties())
             {
                 Column colInf = prop.GetCustomAttribute<Column>(true);
+
+                if (colInf == null)
+                {
+                    continue;
+                }
+
                 table.Query += "`" + prop.Name + "` " + colInf.DataType + " " + colInf.AllowNull + " " + colInf.Default + ", ";
                 if (prop.GetCustomAttributes(typeof(PrimaryKey), true).Length > 0)
                     Primary = "PRIMARY KEY (`" + prop.Name + "`)";

@@ -19,14 +19,12 @@ namespace Server.Pages
         public override void Init(HttpListenerContext ctx)
         {
             this.ContentType = "application/json"; 
-            List<string> authstr;
             string guid;
+            
+            this.auth = Tuple.Create<string, string>(_POST["customer_email"], _POST["customer_password"]);
 
-            authstr = Encoding.UTF8.GetString(Convert.FromBase64String(Headers.Authentication)).Split(':').ToList<string>();
-            this.auth = Tuple.Create<string, string>(authstr[0], authstr[1]);
-
-            Model model = DB.GetModel("users");
-            core_customer[] user = model.Select("*").AddFieldToFilter("customer_name", Tuple.Create<string, Expression>("eq", new Expression(this.auth.Item1))).AddFieldToFilter("customer_password", Tuple.Create<string, Expression>("eq", new Expression(this.auth.Item2))).Load().ToDataSet<core_customer>();
+            Model model = DB.GetModel("core_customer");
+            core_customer[] user = model.Select("*").AddFieldToFilter("customer_email", Tuple.Create<string, Expression>("eq", new Expression(this.auth.Item1))).AddFieldToFilter("customer_password", Tuple.Create<string, Expression>("eq", new Expression(this.auth.Item2))).Load().ToDataSet<core_customer>();
             if (user.Length > 0)
             {
                 guid = Guid.NewGuid().ToString();
@@ -41,12 +39,23 @@ namespace Server.Pages
                         Sessions.sessions.Add(user[0].customer_id, Tuple.Create<string, string, DateTime>(ctx.Request.RemoteEndPoint.Address.ToString(), guid, DateTime.Now));
                     }
 
+                    string cookieDate = DateTime.UtcNow.AddMinutes(60d).ToString("dddd, dd-MM-yyyy hh:mm:ss GMT");
+
+                    ctx.Response.Headers.Add("Set-Cookie", $"guid={guid}; expires={cookieDate}; path=/");
+
                     this.result = user[0].ToJSON(new List<string>() { "\"key\" : \"" + guid + "\"" });
+
+                    if (this._POST.ContainsKey("_REDIRECT"))
+                    {
+                        this.Location = _POST["_REDIRECT"];
+                        _POST.Remove("_REDIRECT");
+                    }
                 }
             }
             else
             {
                 this.result = Constants.STATUS_FALSE;
+                this.Location = "/login";
             }
         }
 

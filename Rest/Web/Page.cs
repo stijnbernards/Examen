@@ -19,6 +19,7 @@ namespace Rest.Web
         public string HTTPMethod { get; set; }
         public int StatusCode = 200;
         public Type Dataset { get; set; }
+        public string Location { get; set; }
 
         public string response = "";
 
@@ -28,6 +29,8 @@ namespace Rest.Web
 
         public virtual string Send() { return BuildHead() + response + BuildFooter(); }
         public virtual string Send(string response) { return this.response; }
+
+        public virtual void CleanUp() { Clear(); }
 
         private string contentType = Constants.CONTENT_JSON;
         private List<string> headLines = new List<string>();
@@ -43,7 +46,7 @@ namespace Rest.Web
                     head += line;
                 }
 
-                head += "</head><body>";
+                head += "</head><body id=\"C#-WebServer\">";
 
                 return head;
             }
@@ -69,6 +72,11 @@ namespace Rest.Web
             AddJs("bootstrap.min.js");
         }
 
+        public void Clear()
+        {
+            this.headLines.Clear();
+        }
+
         public void AddCss(string cssPath)
         {
             headLines.Add(string.Format("<link rel=\"stylesheet\" href=\"{0}\">", FileManager.AssetsDir("css") + cssPath));
@@ -77,6 +85,11 @@ namespace Rest.Web
         public string GetImagePath(string imageName)
         {
             return FileManager.AssetsDir("images") + imageName;
+        }
+
+        public string GetUrl(string url)
+        {
+            return "/" + url;
         }
 
         public void AddJs(string jsPath)
@@ -106,6 +119,12 @@ namespace Rest.Web
             {
                 this.HTTPMethod = _POST["_METHOD"];
                 _POST.Remove("_METHOD");
+            }
+
+            if (this._POST.ContainsKey("_REDIRECT"))
+            {
+                this.Location = _POST["_REDIRECT"];
+                _POST.Remove("_REDIRECT");
             }
 
             Table table;

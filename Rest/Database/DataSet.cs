@@ -51,10 +51,18 @@ namespace Rest.Database
                     continue;
                 }
 
-                formResult += $"<div class=\"form-group\">";
-                formResult += $"<label for=\"{prop.Name}\">{field.Placeholder}</label>";
-                formResult += $"<input class=\"form-control\" id=\"{prop.Name}\" name=\"{prop.Name}\" type=\"{field.Type}\" placeholder=\"{field.Placeholder}\"/>";
-                formResult += $"</div>";
+                if (field.Type != FieldTypes.TYPE_HIDDEN)
+                {
+                    formResult += $"<div class=\"form-group\">";
+                    formResult += $"<label for=\"{prop.Name}\">{field.Placeholder}</label>";
+                }
+
+                formResult += $"<input class=\"form-control\" id=\"{prop.Name}\" name=\"{prop.Name}\" value=\"{prop.GetValue(Activator.CreateInstance(datasetType))}\" type=\"{field.Type}\" placeholder=\"{field.Placeholder}\"/>";
+
+                if (field.Type != FieldTypes.TYPE_HIDDEN)
+                {
+                    formResult += $"</div>";
+                }
             }
 
             formResult += $"<input type=\"hidden\" name=\"_METHOD\" value=\"{form.Method}\"/>";

@@ -11,18 +11,17 @@ using Rest.Web;
 
 namespace RestServer.Pages
 {
-    public class HomePage : Page
+    public class Register : Page
     {
-
         public override void Init(HttpListenerContext ctx = null)
         {
             HTMLFile baseFile = FileManager.LoadFile("base.html");
-            HTMLFile homepageFile = FileManager.LoadFile("homepage.html");
+            HTMLFile panelFile = FileManager.LoadFile("blocks/panel.html");
 
-            homepageFile.AddData(new Dictionary<string, object>()
+            panelFile.AddData(new Dictionary<string, object>()
             {
-                { "car_1", GetImagePath("a6-limousine.png") },
-                { "car_2", GetImagePath("bmw.jpg") }
+                { "form", DataSet.ToHTMLForm(Dataset) },
+                { "header", "Register" }
             });
 
             baseFile.AddData(new Dictionary<string, object>()
@@ -30,21 +29,8 @@ namespace RestServer.Pages
                 //{"car_1", new string[] {"hoi", DataSet.ToHTMLForm(Dataset)}}
                 { "register", GetUrl("register") },
                 { "login", GetUrl("login") },
-                { "content", homepageFile.GetData() }
+                { "content", panelFile.GetData() }
             });
-
-            Console.WriteLine(ctx.Request.Cookies["guid"]);
-
-            if (ctx.Request.Cookies["guid"] != null &&
-                Sessions.sessions.ContainsKey(
-                    (from s in Sessions.sessions where s.Value.Item2 == ctx.Request.Cookies["guid"].Value select s.Key)
-                        .First()))
-            {
-                baseFile.AddData(new Dictionary<string, object>()
-                {
-                    { "account", GetUrl("myaccount") }
-                });   
-            }
 
             LoadBootStrap();
             this.AddCss("styles.css");

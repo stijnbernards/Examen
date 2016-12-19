@@ -73,10 +73,16 @@ namespace Server
             //rest.AddRouting<Page>("rest/users", typeof(core_customer));
             rest.AddRouting<Search>("users/search", typeof(core_customer));
             rest.AddRouting<HomePage>("index", typeof(core_customer));
+            rest.AddRouting<HomePage>("", typeof(core_customer));
+            rest.AddRouting<Register>("register", typeof(core_customer));
+            rest.AddRouting<Login>("login", typeof(core_customer));
 
             rest.AddNoAuthUrl("auth");
             rest.AddNoAuthUrl("corecustomer");
             rest.AddNoAuthUrl("index");
+            rest.AddNoAuthUrl("");
+            rest.AddNoAuthUrl("register");
+            rest.AddNoAuthUrl("login");
             rest.ConstructService(Assembly.GetExecutingAssembly());
             rest.Start();
         }

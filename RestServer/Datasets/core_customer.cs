@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +57,8 @@ namespace Server.Datasets
 
         [Column(DataTypes.TIMESTAMP, Defaults.CURRENT_TIMESTAMP_UPDATE)]
         public DateTime updated { get; set; }
+
+        [Field(FieldTypes.TYPE_HIDDEN, "")]
+        public string _REDIRECT => "http://localhost/index";
     }
 }
