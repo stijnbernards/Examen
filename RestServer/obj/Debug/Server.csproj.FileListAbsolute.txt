@@ -1,0 +1,44 @@
+E:\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+E:\BonTemps\RestServer\bin\Debug\RestServer.exe
+E:\BonTemps\RestServer\bin\Debug\RestServer.pdb
+E:\BonTemps\RestServer\obj\Debug\RestServer.exe
+E:\BonTemps\RestServer\obj\Debug\RestServer.pdb
+E:\BonTemps\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
+E:\BonTemps\RestServer\bin\Debug\Rest.dll
+E:\BonTemps\RestServer\bin\Debug\Rest.pdb
+E:\BonTemps\RestServer\bin\Debug\MySql.Data.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.exe
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.pdb
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.pdb
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\MySql.Data.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.pdb
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.exe
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.pdb
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.pdb
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.dll
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\MySql.Data.dll
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.pdb
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.exe
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\obj\Debug\RestServer.pdb
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.exe
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\bin\Debug\RestServer.pdb
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.dll
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\bin\Debug\Rest.pdb
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+C:\Users\Stijn\Desktop\BonTemps\RestServer\obj\Debug\RestServer.exe
+C:\Users\Stijn\Desktop\BonTemps\RestServer\obj\Debug\RestServer.pdb
+C:\Users\Stijn\Desktop\BonTemps\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\RestServer.exe
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\RestServer.pdb
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\Rest.dll
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\MySql.Data.dll
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\Rest.pdb

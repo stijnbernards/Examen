@@ -1,0 +1,8 @@
+E:\BonTemps\RestServer\bin\Debug\RestServer.exe.config
+E:\BonTemps\RestServer\bin\Debug\RestServer.exe
+E:\BonTemps\RestServer\bin\Debug\RestServer.pdb
+E:\BonTemps\RestServer\bin\Debug\Rest.dll
+E:\BonTemps\RestServer\bin\Debug\Rest.pdb
+E:\BonTemps\RestServer\obj\Debug\RestServer.csprojResolveAssemblyReference.cache
+E:\BonTemps\RestServer\obj\Debug\RestServer.exe
+E:\BonTemps\RestServer\obj\Debug\RestServer.pdb

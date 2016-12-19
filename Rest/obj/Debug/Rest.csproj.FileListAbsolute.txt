@@ -1,0 +1,43 @@
+E:\Rest\Rest\bin\Debug\Rest.dll
+E:\Rest\Rest\bin\Debug\Rest.pdb
+E:\Rest\Rest\obj\Debug\Rest.dll
+E:\Rest\Rest\obj\Debug\Rest.pdb
+E:\Rest\Rest\obj\Debug\Rest.Properties.Resources.resources
+E:\Rest\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+E:\Rest\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+E:\BonTemps\Rest\bin\Debug\Rest.dll
+E:\BonTemps\Rest\bin\Debug\Rest.pdb
+E:\BonTemps\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+E:\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resources
+E:\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+E:\BonTemps\Rest\obj\Debug\Rest.dll
+E:\BonTemps\Rest\obj\Debug\Rest.pdb
+E:\BonTemps\Rest\bin\Debug\MySql.Data.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.pdb
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resources
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.dll
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.pdb
+C:\Users\Stijn\Documents\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.dll
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.pdb
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resources
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.dll
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.pdb
+C:\Users\Ruud\Desktop\School Bon Temps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.dll
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\bin\Debug\Rest.pdb
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resources
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.dll
+F:\User\Desktop\BonTeps\school-project\Rest\BonTemps\Rest\obj\Debug\Rest.pdb
+C:\Users\Stijn\Desktop\BonTemps\Rest\bin\Debug\Rest.dll
+C:\Users\Stijn\Desktop\BonTemps\Rest\bin\Debug\Rest.pdb
+C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resources
+C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.dll
+C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.pdb

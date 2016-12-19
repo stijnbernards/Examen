@@ -1,0 +1,7 @@
+E:\Rest\Rest\bin\Release\Rest.dll
+E:\Rest\Rest\bin\Release\Rest.pdb
+E:\Rest\Rest\obj\Release\Rest.csprojResolveAssemblyReference.cache
+E:\Rest\Rest\obj\Release\Rest.Properties.Resources.resources
+E:\Rest\Rest\obj\Release\Rest.csproj.GenerateResource.Cache
+E:\Rest\Rest\obj\Release\Rest.dll
+E:\Rest\Rest\obj\Release\Rest.pdb
