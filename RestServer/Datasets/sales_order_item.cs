@@ -10,7 +10,7 @@ namespace RestServer.Datasets
 {
     [DataBaseEntry]
     [AutoGenerate]
-    public class sales_order_item
+    public class sales_order_item : DataSet
     {
         [PrimaryKey]
         [Column(DataTypes.INT, Defaults.AUTO_INCREMENT)]

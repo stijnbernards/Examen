@@ -33,8 +33,6 @@ namespace RestServer.Pages
                 { "content", homepageFile.GetData() }
             });
 
-            Console.WriteLine(ctx.Request.Cookies["guid"]);
-
             if (ctx.Request.Cookies["guid"] != null &&
                 Sessions.sessions.ContainsKey(
                     (from s in Sessions.sessions where s.Value.Item2 == ctx.Request.Cookies["guid"].Value select s.Key)

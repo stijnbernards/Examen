@@ -20,13 +20,10 @@ namespace Rest.Web
         public int StatusCode = 200;
         public Type Dataset { get; set; }
         public string Location { get; set; }
-
+        public string Url { get; set; }
         public string response = "";
-
         public virtual void Init(HttpListenerContext ctx = null) { }
-
         public virtual void Load() { }
-
         public virtual string Send() { return BuildHead() + response + BuildFooter(); }
         public virtual string Send(string response) { return this.response; }
 

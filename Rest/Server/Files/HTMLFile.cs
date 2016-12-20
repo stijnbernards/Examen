@@ -115,13 +115,29 @@ namespace Rest.Server.Files
             {
                 foreach (Match match in matches)
                 {
-                    if (variables.ContainsKey(match.Groups[1].Value))
+                    string variable = match.Groups[1].Value.Replace("!", "");
+
+                    if (match.Groups[1].Value.StartsWith("!"))
                     {
-                        data = data.Replace(match.Value, match.Groups[2].Value);
+                        if (!variables.ContainsKey(variable))
+                        {
+                            data = data.Replace(match.Value, match.Groups[2].Value);
+                        }
+                        else
+                        {
+                            data = data.Replace(match.Value, "");
+                        }
                     }
                     else
                     {
-                        data = data.Replace(match.Value, "");
+                        if (variables.ContainsKey(variable))
+                        {
+                            data = data.Replace(match.Value, match.Groups[2].Value);
+                        }
+                        else
+                        {
+                            data = data.Replace(match.Value, "");
+                        }
                     }
                 }
             }

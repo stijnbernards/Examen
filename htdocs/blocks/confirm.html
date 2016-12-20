@@ -1,0 +1,21 @@
+<div class="container product-container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="details col-md-12">
+                    <h3 class="product-title">Order bevestigen</h3>
+                    <p class="product-description">
+                        U heeft aangegeven de auto: {{car_name}}<br>
+                        Te huren van: {{hired_from}} tot: {{hired_to}}<br><br>
+                        Uw address is: {{address}}
+                    </p>
+                    <h4 class="price">Prijs totaal: <span>&euro;{{price}}</span></h4>
+                    <form action="/confirm/{{license}}" method="post">
+                        <div class="action">
+                            <input type="submit" class="add-to-cart btn btn-default" value="Bevestig" name="Bevestig" placeholder="Bevestig"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

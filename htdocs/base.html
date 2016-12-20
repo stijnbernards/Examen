@@ -9,14 +9,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="#">Rent-a-Car</a>
+			  <a class="navbar-brand" href="/">Rent-a-Car</a>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
+					{{if(!account)}}
 					<li><a href="{{register}}">Registreer</a></li>
 					<li><a href="{{login}}">Login</a></li>
+					{{endif}}
 					{{if(account)}}
 						<li><a href="{{account}}">Mijn account</a></li>
 					{{endif}}
@@ -27,7 +29,7 @@
 	<div class="row">
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Catalogus</a></li>
+				<li><a href="/catalog">Catalogus</a></li>
 			</ul>
 		</div>
 	</div>

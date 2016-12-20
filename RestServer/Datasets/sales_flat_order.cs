@@ -11,7 +11,7 @@ namespace RestServer.Datasets
 {
     [DataBaseEntry]
     [AutoGenerate]
-    public class sales_flat_order
+    public class sales_flat_order : DataSet
     {
         [PrimaryKey]
         [Column(DataTypes.INT, Defaults.AUTO_INCREMENT)]

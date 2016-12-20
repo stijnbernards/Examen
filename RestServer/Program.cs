@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Rest;
 using Rest.Database;
 using Rest.Server;
+using RestServer.Datasets;
 using Server.Datasets;
 using Server.Pages;
 using System.Reflection;
@@ -18,8 +19,8 @@ namespace Server
     {
         public static Rest.RestServer rest;
         public static string DBUrl = "localhost", DBUser = "root", DBPwd = "", DBName = "rentacar", BaseURI = "localhost";
-        public static bool Force = true;
-        public static bool Delete = true;
+        public static bool Force = false;
+        public static bool Delete = false;
 
         public static Dictionary<string, Tuple<string, Delegate>> Commands = new Dictionary<string, Tuple<string, Delegate>>()
         {
@@ -52,6 +53,8 @@ namespace Server
             foreach (KeyValuePair<string, string> kv in results)
                 if (Commands.ContainsKey(kv.Key))
                     Commands[kv.Key].Item2.DynamicInvoke(kv.Value);
+
+            Console.ReadLine();
         }
 
         public static void Help()
@@ -70,13 +73,21 @@ namespace Server
 
             rest.ConstructDataBase(Assembly.GetExecutingAssembly(), Force, Delete);
             rest.AddRouting<Authentication>("auth");
-            //rest.AddRouting<Page>("rest/users", typeof(core_customer));
             rest.AddRouting<Search>("users/search", typeof(core_customer));
             rest.AddRouting<HomePage>("index", typeof(core_customer));
             rest.AddRouting<HomePage>("", typeof(core_customer));
             rest.AddRouting<Register>("register", typeof(core_customer));
             rest.AddRouting<Login>("login", typeof(core_customer));
+            rest.AddRouting<Catalog>("catalog", typeof(sales_catalog_car));
+            
+            foreach(sales_catalog_car car in DB.GetModel("sales_catalog_car").Select("car_license_plate").Load().ToDataSet<sales_catalog_car>())
+            {
+                rest.AddRouting<Car>("car/" + car.car_license_plate, typeof(sales_catalog_car));
+                rest.AddRouting<Rent>("rent/" + car.car_license_plate, typeof(sales_flat_order));
+            }
 
+            rest.AddNoAuthUrl("car");
+            rest.AddNoAuthUrl("catalog");
             rest.AddNoAuthUrl("auth");
             rest.AddNoAuthUrl("corecustomer");
             rest.AddNoAuthUrl("index");

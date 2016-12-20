@@ -42,13 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datasets\core_config_data.cs" />
+    <Compile Include="Datasets\FormOrder.cs" />
     <Compile Include="Datasets\sales_catalog_car.cs" />
     <Compile Include="Datasets\sales_flat_order.cs" />
     <Compile Include="Datasets\sales_order_item.cs" />
     <Compile Include="Pages\Authentication.cs" />
+    <Compile Include="Pages\Car.cs" />
+    <Compile Include="Pages\Catalog.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\Login.cs" />
     <Compile Include="Pages\Register.cs" />
+    <Compile Include="Pages\Rent.cs" />
     <Compile Include="Pages\Search.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,3 +41,11 @@ C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.Properties.Resources.resourc
 C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
 C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.dll
 C:\Users\Stijn\Desktop\BonTemps\Rest\obj\Debug\Rest.pdb
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\Rest.dll
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\Rest.pdb
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\MySql.Data.dll
+C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.csprojResolveAssemblyReference.cache
+C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.Properties.Resources.resources
+C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
+C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.dll
+C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.pdb

@@ -40,6 +40,8 @@ namespace Rest.Server
             if (url == "favicon.ico")
                 return;
 
+            url = url.ToLower();
+
             Dictionary<string, string> get = new Dictionary<string, string>();
             Dictionary<string, string> post = new Dictionary<string, string>();
             Encoding utf = new UTF8Encoding(false);
@@ -142,7 +144,8 @@ namespace Rest.Server
 
                         page._POST = post;
                         page._GET = get;
-                        
+                        page.Url = url;
+
                         page.HTTPMethod = ctx.Request.HttpMethod;
                         page.Headers = head;
                         page.Init(ctx);

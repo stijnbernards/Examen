@@ -10,7 +10,7 @@ namespace RestServer.Datasets
 {
     [DataBaseEntry]
     [AutoGenerate]
-    public class core_config_data
+    public class core_config_data : DataSet
     {
         [PrimaryKey]
         [Column(DataTypes.INT, Defaults.AUTO_INCREMENT)]
