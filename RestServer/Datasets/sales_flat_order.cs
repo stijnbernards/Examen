@@ -26,5 +26,8 @@ namespace RestServer.Datasets
 
         [Column(DataTypes.VARCHAR)]
         public string treated_by { get; set; }
+
+        [Column(DataTypes.VARCHAR)]
+        public string invoice_link { get; set; }
     }
 }

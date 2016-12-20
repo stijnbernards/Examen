@@ -115,12 +115,12 @@ body{
     margin-left: 20px; }
 
 .add-to-cart, .like {
-    background: #003cff;
+    background: #0076ad;
     padding: 1.2em 1.5em;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;
-    color: #fff;
+    color: #000;
     -webkit-transition: background .3s ease;
     transition: background .3s ease; }
 .add-to-cart:hover, .like:hover {
@@ -169,4 +169,16 @@ body{
 
 .product-container{
     margin-bottom: 150px;
+}
+
+.card{
+    margin-bottom: 150px;
+}
+
+.my-account, .panel-form{
+    margin-bottom: 150px;
+}
+
+.my-account-content{
+    padding: 20px;
 }

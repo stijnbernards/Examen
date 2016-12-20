@@ -79,18 +79,31 @@ namespace Server
             rest.AddRouting<Register>("register", typeof(core_customer));
             rest.AddRouting<Login>("login", typeof(core_customer));
             rest.AddRouting<Catalog>("catalog", typeof(sales_catalog_car));
-            
-            foreach(sales_catalog_car car in DB.GetModel("sales_catalog_car").Select("car_license_plate").Load().ToDataSet<sales_catalog_car>())
+            rest.AddRouting<MyAccount>("myaccount", typeof(core_customer));
+            rest.AddRouting<Editaccount>("editaccount", typeof(core_customer));
+            rest.AddRouting<Invoices>("invoices", typeof(core_customer));
+            rest.AddRouting<Contact>("contact", typeof(core_customer));
+            rest.AddRouting<Overons>("overons", typeof(core_customer));
+
+            foreach (sales_catalog_car car in DB.GetModel("sales_catalog_car").Select("car_license_plate").Load().ToDataSet<sales_catalog_car>())
             {
                 rest.AddRouting<Car>("car/" + car.car_license_plate, typeof(sales_catalog_car));
                 rest.AddRouting<Rent>("rent/" + car.car_license_plate, typeof(sales_flat_order));
+                rest.AddRouting<Complete>("complete/" + car.car_license_plate, typeof(sales_flat_order));
             }
 
             rest.AddNoAuthUrl("car");
+            rest.AddNoAuthUrl("contact");
+            rest.AddNoAuthUrl("overons");
+            rest.AddNoAuthUrl("invoices");
+            rest.AddNoAuthUrl("rent");
+            rest.AddNoAuthUrl("complete");
             rest.AddNoAuthUrl("catalog");
             rest.AddNoAuthUrl("auth");
             rest.AddNoAuthUrl("corecustomer");
+            rest.AddNoAuthUrl("editaccount");
             rest.AddNoAuthUrl("index");
+            rest.AddNoAuthUrl("myaccount");
             rest.AddNoAuthUrl("");
             rest.AddNoAuthUrl("register");
             rest.AddNoAuthUrl("login");

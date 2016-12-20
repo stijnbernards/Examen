@@ -1,0 +1,16 @@
+<div>
+    <h2>Facturen</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>FactuurID</th>
+                <th>Factuurlink</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{foreach(invoice in invoices)}}
+                {{invoice}}
+            {{endforeach}}
+        </tbody>
+    </table>
+</div>

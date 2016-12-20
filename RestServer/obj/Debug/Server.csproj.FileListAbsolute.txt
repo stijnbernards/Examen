@@ -51,3 +51,7 @@ C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\Rest.pdb
 C:\Users\Stijn\Documents\Examen\RestServer\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Stijn\Documents\Examen\RestServer\obj\Debug\RestServer.exe
 C:\Users\Stijn\Documents\Examen\RestServer\obj\Debug\RestServer.pdb
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\PdfSharp.dll
+C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\PdfSharp.Charting.dll

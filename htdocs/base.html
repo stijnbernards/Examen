@@ -21,6 +21,7 @@
 					{{endif}}
 					{{if(account)}}
 						<li><a href="{{account}}">Mijn account</a></li>
+					<li><a href="#" onclick="clearCookies();">Loguit</a></li>
 					{{endif}}
 				</ul>
 			</div>
@@ -30,6 +31,8 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="/catalog">Catalogus</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="/overons">Contact</a></li>
 			</ul>
 		</div>
 	</div>
@@ -43,17 +46,17 @@
 	<div class="col-md-6">
 		<address>
 		  <strong>Rent-a-Car</strong><br>
-		  1355 Market Street, Suite 900<br>
-		  San Francisco, CA 94103<br>
-		  <abbr title="Phone">P:</abbr> (123) 456-7890
+			Tamboerpad<br>
+			6814 DR Arnhem<br>
+		  <abbr title="Phone">P:</abbr> 06 12307575
 		</address>
 		<address>
 		  <strong>Full Name</strong><br>
-		  <a href="mailto:#">first.last@example.com</a>
+		  <a href="mailto:#">rentacar@gmail.com</a>
 		</address>
 	</div>
 	<div class="col-md-6">
-	  <h2>Heading</h2>
+	  <h2>Informatie</h2>
 	  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 	</div>
   </div>
@@ -64,3 +67,6 @@
 	<p>&copy; Rent-a-Car 2016</p>
   </footer>
 </div>
+<script type="text/javascript">
+	function clearCookies(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); location.reload(); }
+</script>

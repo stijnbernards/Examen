@@ -130,7 +130,7 @@ namespace Rest.Web
 
             if (this._POST != null)
             {
-                if (this.HTTPMethod != Constants.METHOD_PUT)
+                if (this.HTTPMethod != Constants.METHOD_PUT && this.HTTPMethod != Constants.METHOD_PATCH)
                 {
                     UID = Sessions.sessions.Where(x => x.Value.Item2 == Headers.Session)
                             .Select(x => x.Key)
@@ -161,14 +161,22 @@ namespace Rest.Web
 
                 if (this.HTTPMethod == Constants.METHOD_PATCH)
                 {
-                    table = model.Select("*").AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(colID.ToString()))).Load();
+                    table = model.Select("*").AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(_POST["ROW_ID"]))).Load();
                     if (((DataSet[])typeof(Table).GetMethod("ToDataSet").MakeGenericMethod(this.Dataset).Invoke(table, Type.EmptyTypes)).Length > 0)
                     {
                         model = model.Update();
                         foreach (KeyValuePair<string, string> kv in this._POST)
-                            model = model.AddKeyValueToUpdate(kv);
+                        {
+                            if (kv.Key == "ROW_ID")
+                            {
+                                continue;
+                            }
 
-                        model.AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(colID.ToString()))).Load();
+                            KeyValuePair<string, string> kv2 = new KeyValuePair<string, string>(kv.Key, kv.Value.Replace("+", " "));
+                            model = model.AddKeyValueToUpdate(kv2);
+                        }
+
+                        model.AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(_POST["ROW_ID"]))).Load();
 
                         this.ContentType = Constants.CONTENT_JSON;
                         this.response = Constants.STATUS_TRUE;
@@ -179,8 +187,11 @@ namespace Rest.Web
                     Model insertModel = model.Insert();
 
                     foreach (KeyValuePair<string, string> kv in this._POST)
-                        insertModel.AddDataToInsert(kv);
-                    
+                    {
+                        KeyValuePair<string, string> kv2 = new KeyValuePair<string, string>(kv.Key, kv.Value.Replace("+", " "));
+                        insertModel.AddDataToInsert(kv2);
+                    }
+
                     insertModel.Load();
 
                     table = model.Select("*").AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression("LAST_INSERT_ID()", false))).Load();

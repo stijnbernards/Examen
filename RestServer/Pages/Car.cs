@@ -29,7 +29,7 @@ namespace RestServer.Pages
             {
                 for (DateTime dt = Convert.ToDateTime(item.hired_from); dt <= Convert.ToDateTime(item.hired_to); dt = dt.AddDays(1))
                 {
-                    dates.Add(string.Format("{0:dd/MM/yyyy}", dt.Date));
+                    dates.Add(string.Format("{0:yyyy/MM/dd}", dt.Date));
                 }
             }
 

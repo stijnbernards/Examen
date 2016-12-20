@@ -1,0 +1,18 @@
+<div class="container my-account">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="/editaccount">Beheer gegevens</a></li>
+                <li class="list-group-item"><a href="/invoices">Bekijk facturen</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <h1>Welkom {{username}}</h1>
+            <div class="modal-content my-account-content">
+                {{if(content)}}
+                    {{content}}
+                {{endif}}
+            </div>
+        </div>
+    </div>
+</div>

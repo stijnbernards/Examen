@@ -19,6 +19,7 @@ namespace Rest.Web
         public const string METHOD_GET = "GET";
 
         public const string CONTENT_JAVASCRIPT = "application/javascript";
+        public const string CONTENT_PDF = "application/pdf";
         public const string CONTENT_JSON = "application/json";
         public const string CONTENT_CSS = "text/css";
         public const string CONTENT_HTML = "Content-Type: text/html; charset=utf-8";

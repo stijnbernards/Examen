@@ -12,7 +12,13 @@
                     <p class="product-description">{{description}}</p>
                     <h4 class="price">Prijs per dag: <span>&euro;{{price}}</span></h4>
                     <form action="/rent/{{license}}" method="post">
-                        <p>Van: <input class="datepicker" name="date_1" data-date-format="dd/mm/yyyy"> tot: <input class="datepicker2" name="date_2" data-date-format="dd/mm/yyyy"></p>
+                        <div class="form-group">
+                            <div class="input-group input-daterange" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control datepicker" name="date_1">
+                                <span class="input-group-addon">tot</span>
+                                <input type="text" class="form-control datepicker2" name="date_2">
+                            </div>
+                        </div>
                         <div class="action">
                             <input type="submit" class="add-to-cart btn btn-default" value="Huur" name="Huur" placeholder="Huur"/>
                         </div>
@@ -23,21 +29,68 @@
     </div>
 </div>
 <script type="text/javascript">
+    var check = true;
     $(document).ready(function(){
-        $(".datepicker").datepicker({
-            datesDisabled: [
-                {{foreach(date in dates)}}
-                    "{{date}}",
-                {{endforeach}}
-            ]
-        });
+//        $(".datepicker").datepicker({
+//            datesDisabled: [
+//                {{foreach(date in dates)}}
+//                    "{{date}}",
+//                {{endforeach}}
+//            ]
+//        });
 
-        $(".datepicker2").datepicker({
+        $(".input-daterange").datepicker({
             datesDisabled: [
                 {{foreach(date in dates)}}
                     "{{date}}",
                 {{endforeach}}
             ]
-        });
+        }).on('changeDate', function()
+    {
+        if(check && !validateDateRange())
+        {
+            check = false;
+            alert('U heeft datums geselecteerd die een andere verhuurdatum door kruisen selecteer overnieuw a.u.b.');
+            $('.input-daterange input').each(function() {
+                $(this).datepicker("clearDates");
+            });
+            setTimeout(function(){
+                check = true;
+            }, 200);
+        }
     });
+    });
+
+    var unavailableDates = [
+        {{foreach(date in dates)}}
+    "{{date}}",
+    {{endforeach}}
+    ];
+
+
+    function validateDateRange() {
+        var txtStartDate = $(".datepicker");
+        var txtEndDate = $(".datepicker2");
+        var startDate;
+        var endDate;
+        var tempDate;
+
+        if (txtStartDate.val() == "")
+            return false;
+
+        if (txtEndDate.val() == "")
+            return false;
+
+        startDate = new Date(txtStartDate.val());
+        endDate = new Date(txtEndDate.val());
+
+        for (i = 0; i < unavailableDates.length; i++) {
+            tempDate = new Date(unavailableDates[i]);
+            if (startDate < tempDate && endDate > tempDate) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 </script>

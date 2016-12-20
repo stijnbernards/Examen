@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RestServer</RootNamespace>
     <AssemblyName>RestServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Invoicer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Invoicer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,8 +54,14 @@
     <Compile Include="Pages\Authentication.cs" />
     <Compile Include="Pages\Car.cs" />
     <Compile Include="Pages\Catalog.cs" />
+    <Compile Include="Pages\Complete.cs" />
+    <Compile Include="Pages\Contact.cs" />
+    <Compile Include="Pages\Editaccount.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\Invoices.cs" />
     <Compile Include="Pages\Login.cs" />
+    <Compile Include="Pages\MyAccount.cs" />
+    <Compile Include="Pages\Overons.cs" />
     <Compile Include="Pages\Register.cs" />
     <Compile Include="Pages\Rent.cs" />
     <Compile Include="Pages\Search.cs" />

@@ -25,7 +25,7 @@ namespace Rest.Database
             return "{" + string.Join(", ", objs) + "}";
         }
 
-        public static string ToHTMLForm(Type datasetType)
+        public static string ToHTMLForm(Type datasetType, DataSet set = null, int row_id = 0, string method = null, string redirect = null)
         {
             Form form = datasetType.GetCustomAttributes(typeof(Form), true).FirstOrDefault() as Form;
 
@@ -57,7 +57,23 @@ namespace Rest.Database
                     formResult += $"<label for=\"{prop.Name}\">{field.Placeholder}</label>";
                 }
 
-                formResult += $"<input class=\"form-control\" id=\"{prop.Name}\" name=\"{prop.Name}\" value=\"{prop.GetValue(Activator.CreateInstance(datasetType))}\" type=\"{field.Type}\" placeholder=\"{field.Placeholder}\"/>";
+                object value = "";
+
+                if (set == null)
+                {
+                    value = prop.GetValue(Activator.CreateInstance(datasetType));
+                }
+                else
+                {
+                    value = prop.GetValue(set).ToString();
+                }
+
+                if (redirect != null && prop.Name == "_REDIRECT")
+                {
+                    value = redirect;
+                }
+
+                formResult += $"<input class=\"form-control\" id=\"{prop.Name}\" name=\"{prop.Name}\" value=\"{value}\" type=\"{field.Type}\" placeholder=\"{field.Placeholder}\"/>";
 
                 if (field.Type != FieldTypes.TYPE_HIDDEN)
                 {
@@ -65,7 +81,17 @@ namespace Rest.Database
                 }
             }
 
-            formResult += $"<input type=\"hidden\" name=\"_METHOD\" value=\"{form.Method}\"/>";
+            if (method == null)
+            {
+                method = form.Method;
+            }
+
+            if (row_id != 0)
+            {
+                formResult += $"<input type=\"hidden\" name=\"ROW_ID\" value=\"{row_id}\"/>";
+            }
+
+            formResult += $"<input type=\"hidden\" name=\"_METHOD\" value=\"{method}\"/>";
             formResult += $"<input type=\"submit\" value=\"submit\" class=\"btn btn-default\"/>";
 
             formResult += "</form>";

@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using RestServer.Datasets;
-using Rest.Server;
-using Rest.Web;
 using Rest.Database;
-using Server.Datasets;
+using Rest.Server;
 using Rest.Server.Files;
-using System.Net;
-using System.Globalization;
+using Rest.Web;
+using Server.Datasets;
 
 namespace RestServer.Pages
 {
-    public class Rent : Page
+    public class MyAccount : Page
     {
+
         public override void Init(HttpListenerContext ctx = null)
         {
             HTMLFile baseFile = FileManager.LoadFile("base.html");
-            HTMLFile confirmFile = FileManager.LoadFile("blocks/confirm.html");
+            HTMLFile accountFile = FileManager.LoadFile("blocks/myaccount.html");
 
             if (ctx.Request.Cookies["guid"] != null &&
                 Sessions.sessions.ContainsKey(
@@ -28,36 +27,29 @@ namespace RestServer.Pages
             {
                 baseFile.AddData(new Dictionary<string, object>()
                 {
-                    { "account", GetUrl("myaccount") }
+                    {"account", GetUrl("myaccount")}
                 });
             }
             else
             {
-                this.Location = "/register";
+                Location = "/index";
                 return;
             }
-
-            sales_catalog_car car = DB.GetModel("sales_catalog_car").Select("*").AddFieldToFilter("car_license_plate", new Tuple<string, Expression>("eq", new Expression(Url.Split('/')[1]))).Load().ToDataSet<sales_catalog_car>().First();
 
             int customerID = (from s in Sessions.sessions where s.Value.Item2 == ctx.Request.Cookies["guid"].Value select s.Key).First();
 
             core_customer customer = DB.GetModel("core_customer").Select("*").AddFieldToFilter("customer_id", new Tuple<string, Expression>("eq", new Expression(customerID.ToString()))).Load().ToDataSet<core_customer>().First();
 
-            confirmFile.AddData(new Dictionary<string, object>()
+            accountFile.AddData(new Dictionary<string, object>()
             {
-                { "car_name", car.car_type + " - " + car.car_brand },
-                { "hired_from", _POST["date_1"] },
-                { "hired_to", _POST["date_2"] },
-                { "address", "<address><strong>" + customer.customer_name + "</strong>, " + customer.address_street + " " + customer.address_number + " <br>" + customer.address_postal + "</address>" },
-                { "price", Convert.ToInt16((DateTime.ParseExact(_POST["date_2"], "yyyy/MM/dd", CultureInfo.InvariantCulture) - DateTime.ParseExact(_POST["date_1"], "yyyy/MM/dd", CultureInfo.InvariantCulture)).TotalDays) * car.car_day_price },
-                { "license", car.car_license_plate }
+                {"username", customer.customer_name}
             });
 
             baseFile.AddData(new Dictionary<string, object>()
             {
-                { "register", GetUrl("register") },
-                { "login", GetUrl("login") },
-                { "content", confirmFile.GetData() }
+                {"register", GetUrl("register")},
+                {"login", GetUrl("login")},
+                {"content", accountFile.GetData()}
             });
 
             LoadBootStrap();

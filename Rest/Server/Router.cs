@@ -109,6 +109,23 @@ namespace Rest.Server
 
                 return;
             }
+            else if (url.Contains(".pdf"))
+            {
+
+                FileStream fs = File.OpenRead(FileManager.BaseDir + url);
+                
+                ctx.Response.ContentType = Constants.CONTENT_PDF;
+                ctx.Response.ContentLength64 = fs.Length;
+                ctx.Response.StatusCode = Constants.StatusCodes.OK;
+
+                fs.CopyTo(ctx.Response.OutputStream);
+
+                ctx.Response.OutputStream.Flush();
+                ctx.Response.OutputStream.Close();
+                ctx.Response.Close();
+
+                return;
+            }
 
             NoAuth.ForEach(x => { if (!url.Contains(x)) guid = head.Session; else allow = true; });
 
@@ -131,7 +148,7 @@ namespace Rest.Server
                     }
                     
                     //Routing.ToList<KeyValuePair<string, List<Page>>>().ForEach(x => Console.WriteLine(x.Key));
-
+                    Console.WriteLine("test");
                     foreach (Page page in Routing[url])
                     {
                         using (StreamReader reader = new StreamReader(ctx.Request.InputStream, ctx.Request.ContentEncoding))
@@ -154,9 +171,9 @@ namespace Rest.Server
 
                         if (page.Location != null)
                         {
-                            Console.WriteLine(page.Location);
                             ctx.Response.Redirect(page.Location);
                         }
+                        break;
                     }
                 }
                 catch (Exception e)
@@ -187,6 +204,8 @@ namespace Rest.Server
                 //ctx.Response.StatusCode = Routing[url][0].StatusCode;
 
                 ctx.Response.OutputStream.Write(utf.GetBytes(response), 0, utf.GetByteCount(response));
+                ctx.Response.OutputStream.Flush();
+                ctx.Response.OutputStream.Close();
                 ctx.Response.Close();
             }
             else
