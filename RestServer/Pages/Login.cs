@@ -19,6 +19,12 @@ namespace RestServer.Pages
             HTMLFile panelFile = FileManager.LoadFile("blocks/panel.html");
             HTMLFile loginFile = FileManager.LoadFile("blocks/login.html");
 
+            loginFile.AddData(new Dictionary<string, object>()
+            {
+                { "url", "/auth" },
+                { "redirect", "/index" }
+            });
+
             panelFile.AddData(new Dictionary<string, object>()
             {
                 { "form", loginFile.GetData() },

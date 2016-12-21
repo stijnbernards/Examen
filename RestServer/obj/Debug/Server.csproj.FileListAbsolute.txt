@@ -55,3 +55,16 @@ C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\MigraDoc.DocumentObjectMode
 C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\MigraDoc.Rendering.dll
 C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\PdfSharp.dll
 C:\Users\Stijn\Desktop\BonTemps\RestServer\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\PdfSharp.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\Invoicer.pdb
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\PdfSharp.xml
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\PdfSharp.Charting.xml
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Stijn\Documents\Examen\RestServer\bin\Debug\System.Net.Http.Formatting.xml

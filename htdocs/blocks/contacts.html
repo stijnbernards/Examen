@@ -1,0 +1,18 @@
+<div>
+    <h2>Contact berichten</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Contact naam</th>
+            <th>Contact email</th>
+            <th>Contact bericht</th>
+            <th>Verwijder</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach(contact in contacts)}}
+            {{contact}}
+        {{endforeach}}
+        </tbody>
+    </table>
+</div>

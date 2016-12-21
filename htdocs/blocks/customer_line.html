@@ -1,0 +1,13 @@
+<tr>
+    <td>{{customer_name}}</td>
+    <td>{{customer_email}}</td>
+    <td>{{customer_address}}</td>
+    <td>
+        <form action="\corecustomer" method="post">
+            <input type="hidden" value="{{id}}" name="ROW_ID" />
+            <input type="hidden" value="DELETE" name="_METHOD" />
+            <input type="hidden" value="/admin/customers" name="_REDIRECT" />
+            <input type="submit" value="Verwijder" name="Verwijder" />
+        </form>
+    </td>
+</tr>

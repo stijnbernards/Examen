@@ -81,7 +81,7 @@ namespace RestServer.Pages
                     }))
                 .Items(new List<ItemRow>
                 {
-                    ItemRow.Make(car.car_type, car.car_brand + " van: " + _POST["date_1"] + " tot: " + _POST["date_2"],
+                    ItemRow.Make(car.car_type + " - " + car.car_brand, "van: " + _POST["date_1"] + " tot: " + _POST["date_2"],
                         (decimal) days, days * decimal.Multiply(car.car_day_price, (decimal) 0.25), (decimal)car.car_day_price,
                         decimal.Multiply(days, car.car_day_price)),
                 })
@@ -94,7 +94,7 @@ namespace RestServer.Pages
                 .Details(new List<DetailRow>
                 {
                     DetailRow.Make("BETALINGS INFORMATIE",
-                        "Betaling dient achteraf bij de medewerker die uw order afhandeld te worden.", "",
+                        "U kunt achteraf betalen bij de medewerker die uw order afhandeld.", "",
                         "Als u nog verdere vragen heeft kunt u mailen naar info@rent-a-car.com", "",
                         "Bedankt voor uw bestelling",
                         "U kunt de auto ophalen op: " + _POST["date_1"],

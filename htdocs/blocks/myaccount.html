@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-8">
             <h1>Welkom {{username}}</h1>
-            <div class="modal-content my-account-content">
+            <div class="modal-content my-account-content" {{if(!content)}}style="padding: 0px !important;"{{endif}}>
                 {{if(content)}}
                     {{content}}
                 {{endif}}

@@ -37,5 +37,6 @@ namespace Rest.Web
         public const string TYPE_TEXT = "text";
         public const string TYPE_HIDDEN = "hidden";
         public const string TYPE_PASSWORD = "password";
+        public const string TYPE_FILE = "file";
     }
 }

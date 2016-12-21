@@ -69,7 +69,7 @@ namespace Server
         {
             DB database = new DB(DBUrl, DBUser, DBPwd, DBName);
 
-            rest = new Rest.RestServer("http://" + BaseURI + "/", "rest", 0, true);
+            rest = new Rest.RestServer("http://" + BaseURI + "/", "rest", 0, false);
 
             rest.ConstructDataBase(Assembly.GetExecutingAssembly(), Force, Delete);
             rest.AddRouting<Authentication>("auth");
@@ -84,14 +84,25 @@ namespace Server
             rest.AddRouting<Invoices>("invoices", typeof(core_customer));
             rest.AddRouting<Contact>("contact", typeof(core_customer));
             rest.AddRouting<Overons>("overons", typeof(core_customer));
+            rest.AddRouting<Admin>("admin", typeof(core_customer));
+            rest.AddRouting<AdminAuth>("adminauth", typeof(core_customer));
+            rest.AddRouting<AdminManage>("admin/manage", typeof(core_customer));
+            rest.AddRouting<Dayoverview>("admin/cars/day", typeof(core_customer));
+            rest.AddRouting<Cars>("admin/cars", typeof(sales_catalog_car));
+            rest.AddRouting<CarAdd>("admin/cars/add", typeof(sales_catalog_car));
+            rest.AddRouting<Image>("image", typeof(sales_catalog_car));
+            rest.AddRouting<Customers>("admin/customers", typeof(core_customer));
+            rest.AddRouting<Contacts>("admin/contacts", typeof(core_contact));
 
             foreach (sales_catalog_car car in DB.GetModel("sales_catalog_car").Select("car_license_plate").Load().ToDataSet<sales_catalog_car>())
             {
                 rest.AddRouting<Car>("car/" + car.car_license_plate, typeof(sales_catalog_car));
                 rest.AddRouting<Rent>("rent/" + car.car_license_plate, typeof(sales_flat_order));
                 rest.AddRouting<Complete>("complete/" + car.car_license_plate, typeof(sales_flat_order));
+                rest.AddRouting<EditCar>("admin/car/edit/" + car.car_license_plate, typeof(sales_catalog_car));
             }
 
+            rest.AddNoAuthUrl("admin");
             rest.AddNoAuthUrl("car");
             rest.AddNoAuthUrl("contact");
             rest.AddNoAuthUrl("overons");

@@ -57,7 +57,7 @@ namespace RestServer.Pages
 
                 invoiceLine.AddData(new Dictionary<string, object>()
                 {
-                    { "invoice_no", order.order_id },
+                    { "invoice_no", "1000" + order.order_id },
                     { "invoice_link", order.invoice_link }
                 });
 

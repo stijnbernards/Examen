@@ -1,0 +1,30 @@
+<div>
+    <h2>Dag overzicht auto's van {{date}}</h2>
+    <form action="/admin/cars/day" method="post" class="col-md-3">
+        <div class="form-group">
+            <input type="text" class="form-control datepicker" data-date-format="yyyy-mm-dd" name="date" value="{{date}}">
+        </div>
+            <input type="submit" class="add-to-cart btn btn-default" value="Zoek" name="Zoek" placeholder="Zoek"/>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Auto kenteken</th>
+            <th>Auto merk + type</th>
+            <th>Klant naam</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach(car in cars)}}
+            {{car}}
+        {{endforeach}}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var check = true;
+    $(document).ready(function() {
+
+        $(".datepicker").datepicker();
+    });
+</script>

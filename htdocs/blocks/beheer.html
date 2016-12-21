@@ -1,0 +1,21 @@
+<div class="container my-account">
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="/admin/cars/day">Dag overzicht</a></li>
+                <li class="list-group-item"><a href="/admin/cars">Beheer auto's</a></li>
+                <li class="list-group-item"><a href="/admin/customers">Beheer klanten</a></li>
+                <li class="list-group-item"><a href="/image">Upload foto</a></li>
+                <li class="list-group-item"><a href="/admin/contacts">Beheer contact berichten</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <h1>Welkom {{username}}</h1>
+            <div class="modal-content my-account-content" {{if(!content)}}style="padding: 0px !important;"{{endif}}>
+                {{if(content)}}
+                    {{content}}
+                {{endif}}
+            </div>
+        </div>
+    </div>
+</div>

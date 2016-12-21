@@ -9,6 +9,10 @@ using Rest.Server;
 using System.IO;
 using System.Text.RegularExpressions;
 using Rest.Server.Files;
+using System.Net.Http.Formatting;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 
 namespace Rest.Server
 {
@@ -16,6 +20,7 @@ namespace Rest.Server
     {
         private Dictionary<string, List<Page>> Routing = new Dictionary<string, List<Page>>();
         private List<string> NoAuth = new List<string>();
+        private Dictionary<string, Cache> Caching = new Dictionary<string, Cache>();
 
         public void AddNoAuthUrl(string url)
         {
@@ -47,6 +52,7 @@ namespace Rest.Server
             Encoding utf = new UTF8Encoding(false);
             Head head = new Head(ctx.Request.Headers);
             bool allow = false;
+            string totalPost = "";
 
             string response = null;
             string guid = null;
@@ -76,6 +82,11 @@ namespace Rest.Server
                 ctx.Response.ContentLength64 = utf.GetByteCount(response);
                 ctx.Response.StatusCode = Constants.StatusCodes.OK;
 
+                if (!RestServer.Developer)
+                {
+                    ctx.Response.AddHeader("Cache-Control", "max-age=86400");
+                }
+
                 ctx.Response.OutputStream.Write(utf.GetBytes(response), 0, utf.GetByteCount(response));
                 ctx.Response.Close();
 
@@ -89,17 +100,27 @@ namespace Rest.Server
                 ctx.Response.ContentLength64 = utf.GetByteCount(response);
                 ctx.Response.StatusCode = Constants.StatusCodes.OK;
 
+                if (!RestServer.Developer)
+                {
+                    ctx.Response.AddHeader("Cache-Control", "private, max-age=86400");
+                }
+
                 ctx.Response.OutputStream.Write(utf.GetBytes(response), 0, utf.GetByteCount(response));
                 ctx.Response.Close();
 
                 return;
             }
-            else if (url.Contains(".png") || url.Contains(".jpg"))
+            else if (url.Contains(".png") || url.Contains(".jpg") || url.Contains(".ico"))
             {
                 ImageFile image = FileManager.LoadImagefile(url);
 
                 ctx.Response.ContentType = image.GetContentType();
                 ctx.Response.ContentLength64 = image.GetStream().Length;
+
+                if (!RestServer.Developer)
+                {
+                    ctx.Response.AddHeader("Cache-Control", "max-age=86400");
+                }
 
                 image.GetStream().WriteTo(ctx.Response.OutputStream);
 
@@ -119,6 +140,11 @@ namespace Rest.Server
                 ctx.Response.StatusCode = Constants.StatusCodes.OK;
 
                 fs.CopyTo(ctx.Response.OutputStream);
+
+                if (!RestServer.Developer)
+                {
+                    ctx.Response.AddHeader("Cache-Control", "max-age=86400");
+                }
 
                 ctx.Response.OutputStream.Flush();
                 ctx.Response.OutputStream.Close();
@@ -151,12 +177,62 @@ namespace Rest.Server
                     Console.WriteLine("test");
                     foreach (Page page in Routing[url])
                     {
-                        using (StreamReader reader = new StreamReader(ctx.Request.InputStream, ctx.Request.ContentEncoding))
+                        MemoryStream memoryStream = new MemoryStream();
+                        using (Stream input = ctx.Request.InputStream)
                         {
+                            byte[] buffer = new byte[32 * 1024]; // 32K buffer for example
+                            int bytesRead;
+                            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                memoryStream.Write(buffer, 0, bytesRead);
+                            }
+                        }
+                        memoryStream.Position = 0;
+
+                        using (StreamReader reader = new StreamReader(memoryStream, ctx.Request.ContentEncoding))
+                        {
+                            
                             string postR = reader.ReadToEnd();
-                            Console.WriteLine(postR);
-                            if (postR.Length > 0)
-                                postR.Split('&').ToList<string>().ForEach(x => { var spl = x.Split('='); post.Add(spl[0], Uri.UnescapeDataString(spl[1])); });
+
+                            totalPost += postR;
+
+                            memoryStream.Position = 0;
+
+                            if (postR.Contains("Content-Disposition"))
+                            {
+                                SaveFile(memoryStream, ctx.Request.ContentType);
+                            }
+                            else
+                            {
+                                if (postR.Length > 0)
+                                    postR.Split('&').ToList<string>().ForEach(x => { var spl = x.Split('='); post.Add(spl[0], Uri.UnescapeDataString(spl[1])); });
+                            }
+                        }
+
+                        using (SHA1Managed sha1 = new SHA1Managed())
+                        {
+                            byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(url + totalPost));
+                            StringBuilder sb = new StringBuilder(hash.Length * 2);
+
+                            foreach (byte b in hash)
+                            {
+                                sb.Append(b.ToString("X2"));
+                            }
+
+                            if (Caching.ContainsKey(sb.ToString()))
+                            {
+                                Cache cache = Caching[sb.ToString()];
+
+                                ctx.Response.ContentEncoding = cache.ContentEncoding;
+                                ctx.Response.ContentType = cache.ContentType;
+                                ctx.Response.ContentLength64 = cache.ContentLength64;
+
+                                ctx.Response.OutputStream.Write(utf.GetBytes(cache.Response), 0, utf.GetByteCount(cache.Response));
+                                ctx.Response.OutputStream.Flush();
+                                ctx.Response.OutputStream.Close();
+                                ctx.Response.Close();
+                                return;
+                            }
                         }
 
                         page._POST = post;
@@ -203,10 +279,34 @@ namespace Rest.Server
                 ctx.Response.ContentLength64 = utf.GetByteCount(response);
                 //ctx.Response.StatusCode = Routing[url][0].StatusCode;
 
+                //if (!RestServer.Developer)
+                //{
+                //    ctx.Response.AddHeader("Cache-Control", "max-age=86400");
+                //}
+
                 ctx.Response.OutputStream.Write(utf.GetBytes(response), 0, utf.GetByteCount(response));
                 ctx.Response.OutputStream.Flush();
                 ctx.Response.OutputStream.Close();
                 ctx.Response.Close();
+
+                using (SHA1Managed sha1 = new SHA1Managed())
+                {
+                    byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(url + totalPost));
+                    StringBuilder sb = new StringBuilder(hash.Length * 2);
+
+                    foreach (byte b in hash)
+                    {
+                        sb.Append(b.ToString("X2"));
+                    }
+
+                    Cache cache = new Cache();
+                    cache.ContentEncoding = utf;
+                    cache.ContentType = Routing[url][0].ContentType;
+                    cache.ContentLength64 = utf.GetByteCount(response);
+                    cache.Response = response;
+
+                    Caching.Add(sb.ToString(), cache);
+                }
             }
             else
             {
@@ -219,6 +319,33 @@ namespace Rest.Server
 
                 ctx.Response.OutputStream.Write(utf.GetBytes(response), 0, utf.GetByteCount(response));
                 ctx.Response.Close();
+            }
+        }
+
+        public static async void SaveFile(Stream data, string contentType)
+        {
+            StreamContent streamContent = new StreamContent(data);
+            streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
+
+            MultipartMemoryStreamProvider provider = await streamContent.ReadAsMultipartAsync();
+
+            foreach (HttpContent httpContent in provider.Contents)
+            {
+                string fileName = httpContent.Headers.ContentDisposition.FileName;
+
+                if (string.IsNullOrWhiteSpace(fileName))
+                {
+                    continue;
+                }
+
+                using (Stream fileContents = await httpContent.ReadAsStreamAsync())
+                {
+                    using (Stream filestream = File.Create(FileManager.BaseDir + "assets/images/" + fileName.Replace("\"", "")))
+                    {
+                        fileContents.CopyTo(filestream);
+                        filestream.Close();
+                    }
+                }
             }
         }
     }

@@ -1,0 +1,13 @@
+<tr>
+    <td>{{contact_name}}</td>
+    <td>{{contact_email}}</td>
+    <td>{{contact_message}}</td>
+    <td>
+        <form action="\corecontact" method="post">
+            <input type="hidden" value="{{id}}" name="ROW_ID" />
+            <input type="hidden" value="DELETE" name="_METHOD" />
+            <input type="hidden" value="/admin/contacts" name="_REDIRECT" />
+            <input type="submit" value="Verwijder" name="Verwijder" />
+        </form>
+    </td>
+</tr>

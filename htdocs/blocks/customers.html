@@ -1,0 +1,18 @@
+<div>
+    <h2>Klant overzicht</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Klant naam</th>
+            <th>Klant Email</th>
+            <th>Klant Adres</th>
+            <th>Verwijder</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach(customer in customers)}}
+            {{customer}}
+        {{endforeach}}
+        </tbody>
+    </table>
+</div>

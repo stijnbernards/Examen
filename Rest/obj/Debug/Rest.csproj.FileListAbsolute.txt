@@ -49,3 +49,7 @@ C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.Properties.Resources.resourc
 C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.csproj.GenerateResource.Cache
 C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.dll
 C:\Users\Stijn\Documents\Examen\Rest\obj\Debug\Rest.pdb
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Stijn\Documents\Examen\Rest\bin\Debug\System.Net.Http.Formatting.xml

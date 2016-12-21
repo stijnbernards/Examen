@@ -1,0 +1,19 @@
+<form action="\corecontact" method="post" class="contact-form">
+    <div class="form-group">
+        <label for="contact_name">Naam</label>
+        <input class="form-control" id="contact_name" name="contact_name" value="" type="text" placeholder="Naam"/>
+    </div>
+    <div class="form-group">
+        <label for="contact_email">Email adres</label>
+        <input class="form-control" id="contact_email" name="contact_email" value="" type="text" placeholder="Email"/>
+    </div>
+    <div class="form-group">
+        <label for="contact_message">Bericht</label>
+        <textarea class="form-control" id="contact_message" name="contact_message" value="" type="text" placeholder="Bericht"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" value="\contact" name="_REDIRECT" />
+        <input type="hidden" value="PUT" name="_METHOD" />
+        <input type="submit" value="Verstuur" />
+    </div>
+</form>

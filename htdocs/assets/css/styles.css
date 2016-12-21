@@ -182,3 +182,11 @@ body{
 .my-account-content{
     padding: 20px;
 }
+
+.contact-form{
+    margin-top: 50px;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu{
+    margin-top: 150px;
+}

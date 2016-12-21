@@ -36,7 +36,7 @@ namespace Rest.Web
         {
             if (contentType == Constants.CONTENT_HTML)
             {
-                string head = "<html><head>";
+                string head = "<html><head><link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/images/favicon.ico\" /><link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/images/favicon.ico\" /> ";
 
                 foreach (string line in headLines)
                 {
@@ -130,7 +130,7 @@ namespace Rest.Web
 
             if (this._POST != null)
             {
-                if (this.HTTPMethod != Constants.METHOD_PUT && this.HTTPMethod != Constants.METHOD_PATCH)
+                if (this.HTTPMethod != Constants.METHOD_PUT && this.HTTPMethod != Constants.METHOD_PATCH && HTTPMethod != Constants.METHOD_DELETE)
                 {
                     UID = Sessions.sessions.Where(x => x.Value.Item2 == Headers.Session)
                             .Select(x => x.Key)
@@ -203,7 +203,7 @@ namespace Rest.Web
                 }
                 else if (this.HTTPMethod == Constants.METHOD_DELETE)
                 {
-                    model.Delete().AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(colID.ToString()))).Load();
+                    model.Delete().AddFieldToFilter(primary_key, Tuple.Create<string, Expression>("eq", new Expression(_POST["ROW_ID"]))).Load();
 
                     this.ContentType = Constants.CONTENT_JSON;
                     this.response = Constants.STATUS_TRUE;

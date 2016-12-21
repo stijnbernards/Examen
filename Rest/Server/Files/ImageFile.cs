@@ -35,6 +35,9 @@ namespace Rest.Server.Files
                 case "jpg":
                     type = "jpeg";
                     break;
+                case "ico":
+                    type = "x-icon";
+                    break;
             }
 
             return $"image/{type}";
@@ -51,6 +54,13 @@ namespace Rest.Server.Files
                     break;
                 case "png":
                     image.Save(ms, ImageFormat.Png);
+                    break;
+                case "ico":
+                    IntPtr icH = image.GetHicon();
+                    Icon ico = Icon.FromHandle(icH);
+
+                    ico = Icon.FromHandle(icH);
+                    ico.Save(ms);
                     break;
             }
 

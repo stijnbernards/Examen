@@ -1,0 +1,18 @@
+<tr>
+    <td>{{license_plate}}</td>
+    <td>{{brand}}</td>
+    <td>{{type}}</td>
+    <td>{{day_price}}</td>
+    <td>{{image}}</td>
+    <td>
+        <form action="\salescatalogcar" method="post">
+            <input type="hidden" value="{{id}}" name="ROW_ID" />
+            <input type="hidden" value="DELETE" name="_METHOD" />
+            <input type="hidden" value="/admin/cars" name="_REDIRECT" />
+            <input type="submit" value="Verwijder" name="Verwijder" />
+        </form>
+    </td>
+    <td>
+        <a href="/admin/car/edit/{{license_plate}}">Edit</a>
+    </td>
+</tr>

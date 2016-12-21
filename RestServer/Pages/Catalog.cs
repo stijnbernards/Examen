@@ -33,12 +33,20 @@ namespace RestServer.Pages
                     { "car_1_link", GetUrl(cars[i].car_license_plate) },
                     { "car_1_desc", cars[i].car_description },
                     { "car_1_price", cars[i].car_day_price },
-                    { "car_2_image", GetImagePath(cars[i+1].car_image) },
-                    { "car_2_name", cars[i+1].car_type + " - " + cars[i+1].car_brand },
-                    { "car_2_link", GetUrl(cars[i+1].car_license_plate) },
-                    { "car_2_desc", cars[i+1].car_description },
-                    { "car_2_price", cars[i+1].car_day_price }
                 });
+
+
+                if (cars.Length > i + 1)
+                {
+                    carFile.AddData(new Dictionary<string, object>()
+                    {
+                        { "car_2_image", GetImagePath(cars[i + 1].car_image) },
+                        { "car_2_name", cars[i + 1].car_type + " - " + cars[i + 1].car_brand },
+                        { "car_2_link", GetUrl(cars[i + 1].car_license_plate) },
+                        { "car_2_desc", cars[i + 1].car_description },
+                        { "car_2_price", cars[i + 1].car_day_price }
+                    });
+                }
 
                 carsData.Add(carFile.GetData());
             }

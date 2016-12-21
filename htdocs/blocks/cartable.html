@@ -1,0 +1,28 @@
+<div>
+    <h2>Geregistreerde auto's</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Auto kenteken</th>
+            <th>Auto merk</th>
+            <th>Auto type</th>
+            <th>Auto dag prijs</th>
+            <th>Auto foto</th>
+            <th>Verwijder</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach(car in cars)}}
+            {{car}}
+        {{endforeach}}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var check = true;
+    $(document).ready(function() {
+
+        $(".datepicker").datepicker();
+    });
+</script>
